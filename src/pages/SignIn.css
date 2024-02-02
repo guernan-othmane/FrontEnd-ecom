@@ -1,0 +1,81 @@
+.signin-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  border: 1px solid #ccc;
+  border-radius: 2rem;
+  box-shadow: 0 0 15px rgba(35, 19, 185, 0.1);
+  background-color: #fff;
+}
+
+.signin-container h2 {
+  text-align: center;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+
+  font-size: 16px;
+ 
+
+}
+.input-group input {
+    font-size: small;
+  font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+  border: none;
+  border-bottom: 1px solid blue; /* Trait bleu en bas */
+  background: transparent; /* Fond transparent */
+  margin-bottom: 20px; /* Marge en bas */
+  padding: 5px; /* Espacement intérieur */
+  width: 100%; /* Largeur à 100% */
+}
+
+button {
+text-align: center;
+  width: 7rem;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.signin-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signin-links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.signin-links a:hover {
+  text-decoration: underline;
+}
+.label{
+    font-size: medium;
+    font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+}
