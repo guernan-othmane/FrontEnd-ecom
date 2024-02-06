@@ -6,7 +6,7 @@ const items = [
   {
     key: "1",
 
-    label: "Admin_Panel",
+    label: "Admin_Pasnel",
   },
 ];
 
@@ -25,6 +25,7 @@ const App = () => {
           alignItems: "center",
           marginBottom: "2px",
           position: "fixed",
+          backgroundColor : 'red'
         }}
       >
         <div className="demo-logo" />

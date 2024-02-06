@@ -30,11 +30,9 @@
   padding: 10px;
 
   font-size: 16px;
- 
-
 }
 .input-group input {
-    font-size: small;
+  font-size: small;
   font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
   border: none;
   border-bottom: 1px solid blue; /* Trait bleu en bas */
@@ -45,7 +43,7 @@
 }
 
 button {
-text-align: center;
+  text-align: center;
   width: 7rem;
   padding: 10px;
   font-size: 16px;
@@ -75,7 +73,7 @@ button:hover {
 .signin-links a:hover {
   text-decoration: underline;
 }
-.label{
-    font-size: medium;
-    font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+.label {
+  font-size: medium;
+  font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
 }

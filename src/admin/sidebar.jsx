@@ -1,141 +1,88 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import {
-  TagsOutlined,
-  UserOutlined,
   ShopOutlined,
+  UserOutlined,
+  MenuUnfoldOutlined,
   OrderedListOutlined,
+  TagsOutlined,
+  MenuFoldOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
-const { Header, Content, Footer, Sider } = Layout;
-// const items = [
-//   {
-//     key: "2",
-//     icon: <ShopOutlined />,
-//      // Libellé pour "products"
-//   },
-//   {
-//     key: "3",
-//     icon: <UserOutlined />,
-//     label: "users", // Libellé pour "users"
-//   },
-//   {
-//     key: "4",
-//     icon: <TagsOutlined />,
-//     label: "categories", // Libellé pour "categories"
-//   },
-//   {
-//     key: "5",
-//     icon: <OrderedListOutlined />,
-//     label: "orders", // Libellé pour "orders"
-//   },
-// ];
-const App = () => {
+
+import { Layout, Menu, Button, theme } from "antd";
+import { Link } from "react-router-dom";
+
+const { Sider } = Layout;
+
+const Sidebar = () => {
+  const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const items = [
+    {
+      key: "1",
+      icon: <ShopOutlined />,
+      label: "Products",
+      to: "/products",
+    },
+    {
+      key: "2",
+      icon: <UserOutlined />,
+      label: "Users",
+      to: "/users",
+    },
+    {
+      key: "3",
+      icon: <OrderedListOutlined />,
+      label: "Orders",
+      to: "/orders",
+    },
+    {
+      key: "4",
+      icon: <TagsOutlined />,
+      label: "Categories",
+      to: "/categories",
+    },
+  ];
+
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout>
       <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
-        style={{
-          maxHeight: "100vh",
-          minHeight: "100vh", // Hauteur minimale de la barre latérale à 100% de la hauteur de la vue
-          position: "fixed", // Position fixe pour rester en place lors du défilement
-          left: 0, // Alignement à gauche de la page
-        }}
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        style={{ height: "100vh", position: "fixed" }}
       >
         <div className="demo-logo-vertical" />
-        <div className="demo-logo-vertical" />
+
         <Menu
-          style={{
-            marginTop: "5rem",
-          }}
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
+          selectedKeys={["1"]} // Ajout de cette ligne pour indiquer l'élément actif dans le menu
         >
-          <Menu.Item key="1" icon={<ShopOutlined />}>
-            <Link
-              to="/products"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              Products
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="2" icon={<UserOutlined />}>
-            <Link
-              to="/users"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              Users
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="3" icon={<TagsOutlined />}>
-            <Link
-              to="/categories"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              {" "}
-              Categories{" "}
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="4" icon={<OrderedListOutlined />}>
-            <Link
-              to="/orders"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              Orders
-            </Link>
-          </Menu.Item>
+          {items.map((item) => (
+            <Menu.Item key={item.key} icon={item.icon}>
+              <Link to={item.to}>{item.label}</Link>
+            </Menu.Item>
+          ))}
         </Menu>
       </Sider>
-      <Layout>
-        <Header
+      <Layout style={{ marginLeft: "200px" }}>
+        <Button
+          type="text"
+          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          onClick={() => setCollapsed(!collapsed)}
           style={{
-            padding: 0,
-            background: colorBgContainer,
+            fontSize: "16px",
+            width: 64,
+            height: 64,
           }}
         />
-        <Content
-          style={{
-            marginTop: 64, // Ajoute une marge en haut égale à la hauteur de la barre de navigation
-            margin: "24px 16px 0",
-          }}
-        >
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          ></div>
-        </Content>
-        {/* <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer> */}
       </Layout>
     </Layout>
   );
 };
-export default App;
+
+export default Sidebar;

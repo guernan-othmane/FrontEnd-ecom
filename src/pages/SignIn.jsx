@@ -46,9 +46,8 @@ function SignIn() {
             required
           />
         </div>
-        
-          <button type="submit">Sign In</button>
-        
+
+        <button type="submit">Sign In</button>
       </form>
       <div className="signin-links">
         <Link to="/signup">Sign Up</Link> {/* Lien vers la page Sign Up */}

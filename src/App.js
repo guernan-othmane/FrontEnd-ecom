@@ -14,9 +14,12 @@ import "react-toastify/dist/ReactToastify.css";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Contact from "./pages/ContactForm";
-import NavBarAdmin from "./admin/navbar";
-import SideBarAdmin from "./admin/sidebar";
+import ForgotPassword from "./pages/ForgotPassword";
+// import NavBarAdmin from "./admin/navbar";
+import Products from "./admin/Products/products.jsx";
+import Sidebar from "./admin/sidebar";
 import Dashboard from "./admin/Dashboard/dashboard";
+import NewProduct from "./admin/Products/newProduct";
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
@@ -33,6 +36,7 @@ function App() {
 function AppRoutes() {
   const location = useLocation();
   const isDashboardPage = location.pathname === "/dashboard";
+  const isProductsPage = location.pathname === "/products";
 
   return (
     <Suspense fallback={<Loader />}>
@@ -47,13 +51,8 @@ function AppRoutes() {
         pauseOnHover
         theme="light"
       />
-      {isDashboardPage && (
-        <>
-          <NavBarAdmin />
-          <SideBarAdmin />
-        </>
-      )}
-      {!isDashboardPage && <NavBar />}
+      {(isDashboardPage || isProductsPage) && <Sidebar />}
+      {!isDashboardPage && !isProductsPage && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
@@ -62,9 +61,12 @@ function AppRoutes() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/new-product" element={<NewProduct />} />
       </Routes>
-      {!isDashboardPage && <Footer />}
+      {!isDashboardPage && !isProductsPage && <Footer />}
     </Suspense>
   );
 }
