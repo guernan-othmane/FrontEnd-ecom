@@ -25,26 +25,32 @@ const Sidebar = () => {
       icon: <ShopOutlined />,
       label: "Products",
       to: "/products",
+      style: { textDecoration: "none" }
     },
     {
       key: "2",
       icon: <UserOutlined />,
       label: "Users",
       to: "/users",
+      style: { textDecoration: "none" }
     },
     {
       key: "3",
       icon: <OrderedListOutlined />,
       label: "Orders",
       to: "/orders",
+      style: { textDecoration: "none" }
     },
     {
       key: "4",
       icon: <TagsOutlined />,
       label: "Categories",
       to: "/categories",
+      style: { textDecoration: "none" }
     },
   ];
+  
+  
 
   return (
     <Layout>
@@ -63,7 +69,9 @@ const Sidebar = () => {
           selectedKeys={["1"]} // Ajout de cette ligne pour indiquer l'élément actif dans le menu
         >
           {items.map((item) => (
-            <Menu.Item key={item.key} icon={item.icon}>
+            <Menu.Item 
+            style= {{ textDecoration: "none" }}
+            key={item.key} icon={item.icon}>
               <Link to={item.to}>{item.label}</Link>
             </Menu.Item>
           ))}

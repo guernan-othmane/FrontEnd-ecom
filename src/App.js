@@ -20,6 +20,7 @@ import Products from "./admin/Products/products.jsx";
 import Sidebar from "./admin/sidebar";
 import Dashboard from "./admin/Dashboard/dashboard";
 import NewProduct from "./admin/Products/newProduct";
+import EditProduct from "./admin/Products/editProduct.jsx";
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
@@ -36,7 +37,9 @@ function App() {
 function AppRoutes() {
   const location = useLocation();
   const isDashboardPage = location.pathname === "/dashboard";
+  const isNewProduct = location.pathname ===  "/new-product"
   const isProductsPage = location.pathname === "/products";
+  const isEditProduct = location.pathname === "/edit-product/:id";
 
   return (
     <Suspense fallback={<Loader />}>
@@ -51,8 +54,8 @@ function AppRoutes() {
         pauseOnHover
         theme="light"
       />
-      {(isDashboardPage || isProductsPage) && <Sidebar />}
-      {!isDashboardPage && !isProductsPage && <NavBar />}
+      {(isDashboardPage || isProductsPage || isNewProduct || isEditProduct) && <Sidebar />}
+      {!isDashboardPage && !isProductsPage && !isNewProduct && !isEditProduct && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
@@ -65,8 +68,10 @@ function AppRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/new-product" element={<NewProduct />} />
+        <Route path="/edit-product/:id" element={<EditProduct />} />
+
       </Routes>
-      {!isDashboardPage && !isProductsPage && <Footer />}
+      {!isDashboardPage && !isProductsPage && !isNewProduct && !isEditProduct && <Footer />}
     </Suspense>
   );
 }

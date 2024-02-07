@@ -98,13 +98,15 @@ export default function Products() {
                   <td>{product.quantity}</td>
                   <td>{product.image}</td>
                   <td>
-                    <button className="table-button">
+                    <Link to="/edit-product/:id"><button className="table-button">
                       <i className="fas fa-pen"></i>
-                    </button>
+                    </button></Link>
+                    
                     &nbsp; &nbsp;
-                    <button className="table-button">
+                    <Link><button className="table-button">
                       <i className="far fa-trash-alt"></i>
-                    </button>
+                    </button></Link>
+                    
                   </td>
                 </tr>
               ))}
