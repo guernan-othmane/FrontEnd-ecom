@@ -14,6 +14,7 @@ import productImg06 from "../Images/parProduct6.webp";
 import parfum01 from "../Images/parfum_slide3.png";
 import fleurparfum from "../Images/parfum_slide2.png";
 
+
 export const SliderData = [
   {
     id: 1,
@@ -27,12 +28,7 @@ export const SliderData = [
     desc: "Welcome to Our website",
     cover: parfum01,
   },
-  {
-    id: 3,
-    title: "Get started your first shopping",
-    desc: "Welcome to Our website",
-    cover: parfum01,
-  },
+
 ];
 
 export const serviceData = [

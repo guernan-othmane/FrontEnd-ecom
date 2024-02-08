@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { AiOutlineUser } from "react-icons/ai";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { CiShoppingCart } from "react-icons/ci";
+// import { AiOutlineShoppingCart } from "react-icons/ai";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { LuUser2 } from "react-icons/lu";
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import logo from "../image/Art Perfumery (1).png";
 import { useSelector } from "react-redux";
 const NavBar = () => {
   const { cartList } = useSelector((state) => state.cart);
@@ -26,11 +29,13 @@ const NavBar = () => {
       className={isFixed ? "navbar fixed" : "navbar"}
     >
       <Container className="navbar-container">
-        <Navbar.Brand to="/">
-          <Link to="/">
-            <p className="par">Eau du Parfum</p>
-          </Link>
-        </Navbar.Brand>
+      <Navbar.Brand to="/">
+      <Link to="/">
+     <span className="plogo">Art Perfumery</span>  {/* Utilisez la balise img pour afficher le logo */}
+      </Link>
+     
+
+    </Navbar.Brand>
         {/* Media cart and toggle */}
         <div className="d-flex">
           <div className="media-cart">
@@ -47,20 +52,13 @@ const NavBar = () => {
               />
             </svg>
             <Link
-              aria-label="Go to Cart Page"
-              to="/cart"
-              className="cart"
-              data-num={cartList.length}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="black"
-                className="nav-icon"
-              >
-                <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-              </svg>
-            </Link>
+      aria-label="Go to Cart Page"
+      to="/cart"
+      className="cart"
+      data-num={cartList.length}
+    >
+      <CiShoppingCart className="nav-icon" /> {/* Utilisez l'icône RiShoppingCart2Line */}
+    </Link>
           </div>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
@@ -108,7 +106,9 @@ const NavBar = () => {
             </Nav.Item>
             <Nav.Item className="expanded-cart">
               <Link to="/signin">
-                <AiOutlineUser className="signin-icon" />
+
+                <LuUser2 className="signin-icon" />
+
                 {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -128,11 +128,11 @@ const NavBar = () => {
                 className="cart"
                 data-num={cartList.length}
               >
-                <AiOutlineShoppingCart className="cart-icon" />
+                 <HiOutlineShoppingBag  className="cart-icon"/>
               </Link>
-              <Link to="/dashboard">
+              {/* <Link to="/dashboard">
                 <AiOutlineUser className="admin-icon" /> Admin
-              </Link>
+              </Link> */}
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

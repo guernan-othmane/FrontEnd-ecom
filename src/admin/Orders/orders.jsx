@@ -1,39 +1,31 @@
 import React, { useState } from "react";
-import "./users.css";
+import "./orders.css";
 import { Link } from "react-router-dom";
 
 export default function Users() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(5); // Nombre de produits par page
+  const [ordersPerPage] = useState(5); // Nombre de produits par page
   
 
   // Données factices pour la démonstration
-  const users = [
+  const orders = [
     {
-       id: 2,
-       fullname: "John Doe",
-       email:"john@gmail.com",
-       phoneNumber: "0678945321"
+       orderid: 2,
+       customername: "John Doe",
+       totalamout:"222",
+       status: "dispo"
        },
-       {
-        id: 1,
-        fullname: "Jane Smith",
-        email: "jane@yahoo.fr",
-        phoneNumber: "0698765432"
-        },
-
-
     // Ajoutez autant d'éléments que nécessaire
   ];
 
   // Index du dernier produit de la page actuelle
-  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfLastOrder = currentPage * ordersPerPage;
   // Index du premier produit de la page actuelle
-  const indexOfFirstUser = indexOfLastUser - usersPerPage; // Correction ici
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage; // Correction ici
   // Produits de la page actuelle
-  const currentUsers = users.slice(
-    indexOfFirstUser,
-    indexOfLastUser
+  const currentOrders = orders.slice(
+    indexOfFirstOrder,
+    indexOfLastOrder
   );
 
   // Changer de page
@@ -43,32 +35,29 @@ export default function Users() {
     <section>
       <div className="table-all">
         <p>
-          <h3>Users</h3>
+          <h3>Orders</h3>
         </p>
-        <div className="text-end">
-          <Link to="/new-user">
-            <button className="btn-add">Add</button>
-          </Link>
-        </div>
         <br />
         <div>
           <table className="table shadow mt-2">
             <thead className="table-dark">
               <tr className="th-text">
-                <th>fullname</th>
-                <th>email</th>
-                <th>phoneNumber</th>
+                <th>OrderId</th>
+                <th>CustomerName</th>
+                <th>TotalAmout</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {currentUsers.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.fullname}</td>
-                  <td>{user.email}</td>
-                  <td>{user.phoneNumber}</td>
+              {currentOrders.map((order) => (
+                <tr key={order.orderid}>
+                  <td>{order.orderid}</td>
+                  <td>{order.customername}</td>
+                  <td>{order.totalamout}</td>
+                  <td>{order.status}</td>
                   <td>
-                    <Link to="/edit-user/:id"><button className="table-button">
+                    <Link to="/edit-order/:id"><button className="table-button">
                       <i className="fas fa-pen"></i>
                     </button></Link>
                     
@@ -103,7 +92,7 @@ export default function Users() {
                 className="page-link"
                 onClick={() =>
                   setCurrentPage(
-                    currentPage === Math.ceil(users.length / usersPerPage)
+                    currentPage === Math.ceil(orders.length / ordersPerPage)
                       ? currentPage
                       : currentPage + 1
                   )

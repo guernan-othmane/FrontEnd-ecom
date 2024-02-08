@@ -56,6 +56,9 @@ button {
 }
 
 .heading h1 {
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: black;
   width: fit-content;
   text-align: center;
   margin: 20px auto 30px !important;

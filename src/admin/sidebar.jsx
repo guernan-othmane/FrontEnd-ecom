@@ -5,6 +5,7 @@ import {
   MenuUnfoldOutlined,
   OrderedListOutlined,
   TagsOutlined,
+  DashboardOutlined ,
   MenuFoldOutlined,
 } from "@ant-design/icons";
 
@@ -20,6 +21,13 @@ const Sidebar = () => {
   } = theme.useToken();
 
   const items = [
+    {
+      key: "0",
+      icon: < DashboardOutlined/>,
+      label: "Dashboard",
+      to: "/dashboard",
+      style: { textDecoration: "none" }
+    },
     {
       key: "1",
       icon: <ShopOutlined />,
@@ -58,15 +66,16 @@ const Sidebar = () => {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        style={{ height: "100vh", position: "fixed" }}
+        style={{ height: "100vh", position: "fixed", 
+     }}
       >
         <div className="demo-logo-vertical" />
 
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
-          selectedKeys={["1"]} // Ajout de cette ligne pour indiquer l'élément actif dans le menu
+          defaultSelectedKeys={["0"]}
+          selectedKeys={["0"]} // Ajout de cette ligne pour indiquer l'élément actif dans le menu
         >
           {items.map((item) => (
             <Menu.Item 

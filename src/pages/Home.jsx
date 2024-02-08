@@ -34,7 +34,11 @@ const Home = () => {
         bgColor="white"
         productItems={newArrivalData}
       /> */}
-      <Section title="Products" bgColor="#f6f9fc" productItems={data} />
+      <Section
+        title="FRAGRANCES"
+        bgColor="#f6f9fc"
+        productItems={data}
+      />
     </Fragment>
   );
 };

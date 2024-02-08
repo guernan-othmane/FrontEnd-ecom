@@ -1,5 +1,6 @@
 import React from "react";
 import "./ForgotPassword.css"; // Assurez-vous d'avoir un fichier CSS pour le style
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   const handleSubmit = (e) => {
@@ -11,10 +12,13 @@ const ForgotPassword = () => {
     <div className="forgot-password-container">
       <div className="forgot-password-form">
         <h2>Forgot Password</h2>
+        <p  className="paragraphe"> Please enter the email address
+           you'd like your password reset information sent to</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input
+            className="inputEmail"
               type="email"
               id="email"
               name="email"
@@ -25,6 +29,9 @@ const ForgotPassword = () => {
           <button type="submit" className="btn-submit">
             Reset Password
           </button>
+          <Link to="signin"> 
+          <p>Back to Sign In</p>
+          </Link>
         </form>
       </div>
     </div>

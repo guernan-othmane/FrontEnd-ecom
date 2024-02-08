@@ -36,7 +36,9 @@ const Cart = () => {
                 <div className="cart-list" key={productItem.id}>
                   <Row>
                     <Col className="image-holder" sm={4} md={3}>
-                      <img src={productItem.images[0]} alt="" />
+                      {productItem.images && productItem.images[0] && (
+                        <img src={productItem.images[0]} alt="" />
+                      )}
                     </Col>
                     <Col sm={8} md={9}>
                       <Row className="cart-content justify-content-center">

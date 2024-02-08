@@ -48,3 +48,14 @@ footer li {
   margin-bottom: 10px;
   opacity: 0.5;
 }
+
+.contact {
+  list-style-type: none; /* Supprime les puces */
+  padding: 0; /* Supprime le padding par défaut */
+}
+
+.contact-item {
+  text-decoration: none;
+  border-bottom: none; /* Supprime la bordure en bas */
+  color: white; /* Change la couleur du texte en blanc */
+}

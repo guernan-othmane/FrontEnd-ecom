@@ -93,11 +93,13 @@
   font-size: 25px;
 }
 
-.logo {
-  font-size: 25px;
-  font-weight: 500;
+.plogo {
+  height: 3rem;
+  width: 6rem;
   color: black;
   margin: 0;
+  text-decoration: none; /* Supprime la décoration de texte par défaut */
+  border-bottom: none;
 }
 
 .navbar-link {
@@ -111,15 +113,19 @@
 }
 
 .nav-link-label {
-  color: black;
-  font-size: 18px !important;
+  color: #A27700;
+  font-size: 15px !important;
   font-weight: 600;
-}
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-family: none;}
+
 
 .nav-icon {
-  width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
   padding-bottom: 5px;
+  color: black;
 }
 
 .cart {
@@ -183,7 +189,7 @@
   }
 
   .logo {
-    font-size: 20px;
+    height: 2rem;
   }
 
   .expanded-cart {
@@ -199,10 +205,12 @@
 .signin-icon {
   height: 2.5rem;
   width: 2rem;
+  color: black;
 }
 .cart-icon {
   height: 2.5rem;
   width: 2rem;
+  color: black;
 }
 .par {
   font-family: "Open Sans", sans-serif;
@@ -211,4 +219,5 @@
 .admin-icon {
   height: 2.5rem;
   width: 2rem;
+  color: black;
 }

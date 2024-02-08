@@ -1,6 +1,7 @@
 import { Col } from "react-bootstrap";
 import "./product-card.css";
 import { useNavigate } from "react-router-dom";
+import { CiShoppingCart } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../app/features/cart/cartSlice";
@@ -46,7 +47,8 @@ const ProductCard = ({ title, productItem }) => {
             className="add"
             onClick={() => handelAdd(productItem)}
           >
-            <ion-icon name="add"></ion-icon>
+            {/* <ion-icon name=""></ion-icon> */}
+            <CiShoppingCart className="icon_cart"/>
           </button>
         </div>
       </div>
