@@ -72,24 +72,24 @@ function AppRoutes() {
       {(isDashboardPage ||
         isProductsPage ||
         isNewProduct ||
-        isEditProduct ||
         isUsersPage ||
         isNewUser ||
         isEditUser ||
         isOrdersPage ||
         isEditOrder ||
         isNewCategory ||
+        isEditProduct ||
         isCategories) && <Sidebar />}
       {!isDashboardPage &&
         !isProductsPage &&
         !isNewProduct &&
-        !isEditProduct &&
         !isNewUser &&
         !isUsersPage &&
         !isEditUser &&
         !isOrdersPage &&
         !isCategories &&
         !isNewCategory &&
+        !isEditProduct &&
         !isEditOrder && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -118,12 +118,12 @@ function AppRoutes() {
         !isProductsPage &&
         !isNewProduct &&
         !isUsersPage &&
-        !isEditProduct &&
         !isNewUser &&
         !isEditUser &&
         !isOrdersPage &&
         !isCategories &&
         !isNewCategory &&
+        !isEditProduct &&
         !isEditOrder && <Footer />}
     </Suspense>
   );

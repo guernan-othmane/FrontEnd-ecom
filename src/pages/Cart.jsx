@@ -6,6 +6,8 @@ import {
   decreaseQty,
   deleteProduct,
 } from "../app/features/cart/cartSlice";
+import "./Cart.css"
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cartList } = useSelector((state) => state.cart);
@@ -86,6 +88,10 @@ const Cart = () => {
               <div className=" d_flex">
                 <h4>Total Price :</h4>
                 <h3>${totalPrice}.00</h3>
+                <Link to="/checkout">
+                <button className="btn_check">CHECKOUT</button>
+                </Link>
+                
               </div>
             </div>
           </Col>

@@ -1,26 +1,42 @@
 import React, { useState } from "react";
 import "./newUser.css"; // Fichier CSS pour le style
+import { useNavigate } from "react-router-dom";
+import { axiosClient } from "../../utils/axios";
 
 const NewUSer = () => {
   const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phonenumber, setPhoneNumber] = useState("");
+  const navigate = useNavigate();
 
-  const handleAddProduct = () => {
-    // Logique pour ajouter un produit (à implémenter)
-    console.log("FullName:", fullname);
-    console.log("Email:", email);
-    console.log("PhoneNumber:", phonenumber);
-    // Réinitialiser les champs après l'ajsout
-    setFullName("");
-    setEmail("");
-    setPhoneNumber("");
+  const handleAddUser = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axiosClient.post('/users/add', {
+        fullname,
+        email,
+        phonenumber
+      });
+      
+      if (response.status === 201) {
+        setFullName('');
+        setEmail('');
+        setPhoneNumber('');
+       console.log('user ajouté avec succès !') ;
+       navigate('/users')
+      } else {
+       console.log('Une erreur est survenue lors de l\'ajout du user');
+      }
+    } catch (error) {
+      console.log(error);
+      // Afficher un message d'erreur ou effectuer une autre action appropriée
+    }
   };
 
   return (
     <div className="add-product-container">
       <h2>Add User</h2>
-      <form onSubmit={handleAddProduct}>
+      <form onSubmit={(e) => handleAddUser(e)}>
         <label>FullName:</label>
         <input
           type="text"
@@ -39,12 +55,6 @@ const NewUSer = () => {
           />
         </div>
         <br />
-        <label>Role:</label>
-        <select>
-          <option value="admin">Admin</option>
-          <option value="moderator">Moderator</option>
-          <option value="user">User</option>
-        </select>
         <br /> <br />
         <button type="submit">Add</button>
       </form>

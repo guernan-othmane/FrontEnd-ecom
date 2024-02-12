@@ -1,42 +1,53 @@
-import React, { useState } from 'react';
-import './EditProduct.css'; // CSS file for styling
+import React, { useState, useEffect } from "react";
+import "./EditProduct.css";
+import { axiosClient } from "../../utils/axios";
+import { useParams, useNavigate } from "react-router-dom";
 
-const EditProduct = ({ product }) => {
-  const [title, setTitle] = useState(product?.title || '');
-  const [description, setDescription] = useState(product?.description || '');
-  const [image, setImage] = useState(product?.image || '');
-  const [quantity, setQuantity] = useState(product?.quantity || 0);
-  const [available, setAvailable] = useState(product?.available || false);
+const EditProduct = () => {
+  const { id } = useParams();
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [image, setImage] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    axiosClient
+      .get("products/" + id)
+      .then((response) => {console.log(response)
+        setTitle(response.data.product.title);
+        setDescription(response.data.product.description);
+        setPrice(response.data.product.price);
+        setImage(response.data.product.image);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-  const handleEditProduct = () => {
-    // Logic for editing a product (to be implemented)
-    console.log('Title:', title);
-    console.log('Description:', description);
-    console.log('Image:', image);
-    console.log('Quantity:', quantity);
-    console.log('Available:', available);
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosClient.put("products/update/"+id, { title, description, price, image })
+    .then((res)=> {
+      console.log(res)
+      navigate('/products')
+      }).catch((err)=>{
+        console.log('Error in updating the product');
+        });
+        };
 
   return (
     <div className="edit-product-container">
       <h2>Edit Product</h2>
-      <form onSubmit={handleEditProduct}>
+      <form  onSubmit={handleSubmit}>
         <label>Title:</label>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-
+        <input type="text" name="title" value={title}  onChange={(e) => setTitle(e.target.value)} />
         <label>Description:</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-
-        <label>Image:</label>
-        <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
-
-        <label>Quantity:</label>
-        <input type="number" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} />
-
-        <label>Available:</label>
-        <input type="checkbox" checked={available} onChange={(e) => setAvailable(e.target.checked)} />
-
-        <button type="submit">Save Changes</button>
+        <textarea name="description"  value={description}  onChange={(e) => setDescription(e.target.value)}></textarea>
+        <div className="image">
+          <label>Image:</label>
+          <input type="text" name="image" value={image} onChange={(e)=>setImage(e.target.value)}/>
+        </div>
+        <label>Price:</label>
+        <input type="number" name="price" value={price}  onChange={(e) => setPrice(Number(e.target.value))} />
+        <button type="submit">Save</button>
       </form>
     </div>
   );

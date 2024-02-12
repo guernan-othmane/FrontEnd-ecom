@@ -41,7 +41,7 @@
 
 .product-page .qty-input {
   width: 80px;
-  height: 20px;
+  height: 50px;
   border: 1px solid black;
   border-radius: 5px;
   padding: 15px;
@@ -58,10 +58,11 @@
   border-radius: 7px;
 }
 .add{
-  width:5rem;
-  height: 3rem;
+  width:9rem;
+  height: auto;
 }
 .text{
    font-size: small;
 }
+
 

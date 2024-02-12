@@ -27,19 +27,21 @@ const ProductDetails = ({ selectedProduct }) => {
           <Col md={6}>
             <h2>{selectedProduct[0].title}</h2>
             <div className="rate">
-              <div className="stars">
+              {/* <div className="stars">
                 <i className="fa fa-star"></i>
                 <i className="fa fa-star"></i>
                 <i className="fa fa-star"></i>
                 <i className="fa fa-star"></i>
                 <i className="fa fa-star"></i>
-              </div>
+              </div> */}
               {/* <span>{selectedProduct?.avgRating} ratings</span> */}
             </div>
             <div className="info">
-              <span className="price">${selectedProduct[0].price}</span>
-              <span>category:{selectedProduct[0].category}</span>
+              <span className="price">${selectedProduct[0].price}</span> 
             </div>
+            <br />
+            <span>Category:{selectedProduct[0].category}</span>
+            <br />
             <p>{selectedProduct[0].description}</p>
             <input
               className="qty-input"
