@@ -77,6 +77,12 @@ export default function Users() {
                       <i className="far fa-trash-alt"></i>
                     </button></Link>
                     
+                    &nbsp; &nbsp;
+                    <Link>
+                      <button className="table-button">
+                        <i className="far fa-trash-alt"></i>
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

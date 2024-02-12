@@ -47,7 +47,6 @@ const ProductCard = ({ title, productItem }) => {
             className="add"
             onClick={() => handelAdd(productItem)}
           >
-            {/* <ion-icon name=""></ion-icon> */}
             <CiShoppingCart className="icon_cart"/>
           </button>
         </div>

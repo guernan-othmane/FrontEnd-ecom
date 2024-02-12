@@ -1,31 +1,35 @@
 import React, { useState } from "react";
-import "./orders.css";
+import "./categories.css";
 import { Link } from "react-router-dom";
 
-export default function Users() {
+export default function Categories() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [ordersPerPage] = useState(5); // Nombre de produits par page
-  
+  const [categoriesPerPage] = useState(5); // Nombre de produits par page
 
   // Données factices pour la démonstration
-  const orders = [
+  const categories = [
     {
-       orderid: 2,
-       customername: "John Doe",
-       totalamout:"222",
-       status: "dispo"
-       },
-    // Ajoutez autant d'éléments que nécessaire
+      id: 1,
+      name: "skincare",
+      description: "Description 1",
+    },
+    {
+      id: 2,
+      name: "elegance",
+      description: "Description 2",
+
+    },
+    
   ];
 
   // Index du dernier produit de la page actuelle
-  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfLastCategory = currentPage * categoriesPerPage;
   // Index du premier produit de la page actuelle
-  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage; // Correction ici
+  const indexOfFirstCategory = indexOfLastCategory - categoriesPerPage;
   // Produits de la page actuelle
-  const currentOrders = orders.slice(
-    indexOfFirstOrder,
-    indexOfLastOrder
+  const currentCategories = categories.slice(
+    indexOfFirstCategory,
+    indexOfLastCategory
   );
 
   // Changer de page
@@ -35,36 +39,40 @@ export default function Users() {
     <section>
       <div className="table-all">
         <p>
-          <h3>Orders</h3>
+          <h3>Categories</h3>
         </p>
+        <div className="text-end">
+          <Link to="/new-category">
+            <button className="btn-add">Add</button>
+          </Link>
+        </div>
         <br />
         <div>
           <table className="table shadow mt-2">
             <thead className="table-dark">
               <tr className="th-text">
-                <th>OrderId</th>
-                <th>CustomerName</th>
-                <th>TotalAmout</th>
-                <th>Status</th>
+                <th>Name</th>
+                <th>Description</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {currentOrders.map((order) => (
-                <tr key={order.orderid}>
-                  <td>{order.orderid}</td>
-                  <td>{order.customername}</td>
-                  <td>{order.totalamout}</td>
-                  <td>{order.status}</td>
+              {currentCategories.map((category) => (
+                <tr key={category.id}>
+                  <td>{category.name}</td>
+                  <td>{category.description}</td>
                   <td>
-                    <Link to="/edit-order/:id"><button className="table-button">
-                      <i className="fas fa-pen"></i>
-                    </button></Link>
-                    
+                    <Link to={'/category/:id'}>
+                      <button className="table-button">
+                        <i className="fas fa-eye"></i>
+                      </button>
+                    </Link>
                     &nbsp; &nbsp;
-                    <Link><button className="table-button">
-                      <i className="far fa-trash-alt"></i>
-                    </button></Link>
+                    <Link to={'/edit-category/:id'}>
+                      <button className="table-button">
+                        <i className="fas fa-pen"></i>
+                      </button>
+                    </Link>
                     &nbsp; &nbsp;
                     <Link>
                       <button className="table-button">
@@ -97,7 +105,7 @@ export default function Users() {
                 className="page-link"
                 onClick={() =>
                   setCurrentPage(
-                    currentPage === Math.ceil(orders.length / ordersPerPage)
+                    currentPage === Math.ceil(categories.length / categoriesPerPage)
                       ? currentPage
                       : currentPage + 1
                   )

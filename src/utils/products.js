@@ -11,7 +11,7 @@ import productImg06 from "../Images/parProduct6.webp";
 // import productImg09 from "../Images/parProduct10.avif";
 // import productImg10 from "../Images/parProduct11.avif";
 
-import parfum01 from "../Images/parfum_slide3.png";
+import parfum01 from "../Images/imageslide.png";
 import fleurparfum from "../Images/parfum_slide2.png";
 
 

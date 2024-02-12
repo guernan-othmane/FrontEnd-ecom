@@ -29,7 +29,7 @@ const ForgotPassword = () => {
           <button type="submit" className="btn-submit">
             Reset Password
           </button>
-          <Link to="signin"> 
+          <Link to="/signin"> 
           <p>Back to Sign In</p>
           </Link>
         </form>

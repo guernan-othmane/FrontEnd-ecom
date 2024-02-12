@@ -1,16 +1,39 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./SignUp.css";
+import { axiosClient } from "../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const [fullName, setFullName] = useState("");
+  const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axiosClient.post('/auth/register', {
+        fullname,
+        email,
+        password,
+      });
+      
+      if (response.status === 201) {
+        setFullName('');
+        setEmail('');
+        setPassword('');
+        console.log('Sign Up ajouté avec succès !') ;
+        navigate('/signin')
+      } else {
+       console.log('Une erreur est survenue lors connexion');
+      }
+    } catch (error) {
+      console.log(error);
+      // Afficher un message d'erreur ou effectuer une autre action appropriée
+    }
     // Ici, vous pouvez ajouter la logique pour soumettre le formulaire de création de compte
-    console.log("Full Name:", fullName);
+    console.log("Full Name:", fullname);
     console.log("Email:", email);
     console.log("Password:", password);
   };
@@ -18,14 +41,14 @@ function SignUp() {
   return (
     <div className="signup-container">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="input-group">
           <label htmlFor="fullName">Full Name:</label>
           <input
             type="text"
             placeholder="Enter your fullname"
             id="fullName"
-            value={fullName}
+            value={fullname}
             onChange={(e) => setFullName(e.target.value)}
             required
           />

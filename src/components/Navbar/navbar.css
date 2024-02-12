@@ -92,11 +92,17 @@
 .navbar-brand ion-icon {
   font-size: 25px;
 }
-
+.per{
+  color: #00234f;
+}
+.a{
+  color: #00234f;
+}
 .plogo {
   height: 3rem;
   width: 6rem;
   color: black;
+  letter-spacing: 8px;
   margin: 0;
   text-decoration: none; /* Supprime la décoration de texte par défaut */
   border-bottom: none;
@@ -113,7 +119,7 @@
 }
 
 .nav-link-label {
-  color: #A27700;
+  color: #00234f;
   font-size: 15px !important;
   font-weight: 600;
   letter-spacing: .2em;

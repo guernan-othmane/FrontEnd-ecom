@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import './NewProduct.css'; // Fichier CSS pour le style
+import './NewProduct.css';
+import axios from 'axios'; // Importez Axios
+import {axiosClient} from '../../utils/axios';
+import { CListGroup } from '@coreui/react';
 
 const NewProduct = () => {
   const [title, setTitle] = useState('');
@@ -8,25 +11,38 @@ const NewProduct = () => {
   const [quantity, setQuantity] = useState(0);
   const [available, setAvailable] = useState(false);
 
-  const handleAddProduct = () => {
-    // Logique pour ajouter un produit (à implémenter)
-    console.log('Title:', title);
-    console.log('Description:', description);
-    console.log('Image:', image);
-    console.log('Quantity:', quantity);
-    console.log('Available:', available);
-    // Réinitialiser les champs après l'ajsout
-    setTitle('');
-    setDescription('');
-    setImage('');
-    setQuantity(0);
-    setAvailable(false);
+  const handleAddProduct = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axiosClient.post('/products/add', {
+        title,
+        description,
+        image,
+        quantity,
+        available,
+      });
+      
+      if (response.status === 201) {
+        setTitle('');
+        setDescription('');
+        setImage('');
+        setQuantity(0);
+        setAvailable(false);
+       console.log('Produit ajouté avec succès !') ;
+      } else {
+       console.log('Une erreur est survenue lors de l\'ajout du produit');
+      }
+    } catch (error) {
+      console.log(error);
+      // Afficher un message d'erreur ou effectuer une autre action appropriée
+    }
   };
+
 
   return (
     <div className="add-product-container">
       <h2>Add Product</h2>
-      <form onSubmit={handleAddProduct}>
+      <form onSubmit={(e) => handleAddProduct(e)}>
         <label>Titre:</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
 
@@ -47,4 +63,3 @@ const NewProduct = () => {
 };
 
 export default NewProduct;
-

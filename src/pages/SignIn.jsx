@@ -1,15 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Importer le composant de lien de react-router-dom
-import "./SignIn.css"; // Fichier de style pour personnaliser l'apparence
+import { Link, useNavigate } from "react-router-dom";
+import "./SignIn.css";
+import { axiosClient } from "../utils/axios";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Ici, vous pouvez ajouter la logique pour soumettre le formulaire
-    // par exemple, en appelant une fonction d'authentification
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axiosClient.post("/auth/login", {
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        setEmail("");
+        setPassword("");
+        console.log("Sign in ajouté avec succès !");
+        navigate("/verify-code");
+      } else {
+        console.log("Une erreur est survenue lors connexion");
+      }
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
     console.log("Email:", email);
     console.log("Password:", password);
   };
@@ -17,7 +34,7 @@ function SignIn() {
   return (
     <div className="signin-container">
       <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="input-group">
           <label className="label" htmlFor="email">
             Email:
@@ -50,9 +67,8 @@ function SignIn() {
         <button type="submit">Sign In</button>
       </form>
       <div className="signin-links">
-        <Link to="/signup">Sign Up</Link> {/* Lien vers la page Sign Up */}
+        <Link to="/signup">Sign Up</Link>
         <Link to="/forgotpassword">Forgot Password?</Link>{" "}
-        {/* Lien vers la page Forgot Password */}
       </div>
     </div>
   );

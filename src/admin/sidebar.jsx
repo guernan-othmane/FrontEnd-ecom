@@ -1,104 +1,60 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  ShopOutlined,
-  UserOutlined,
-  MenuUnfoldOutlined,
-  OrderedListOutlined,
-  TagsOutlined,
-  DashboardOutlined ,
-  MenuFoldOutlined,
-} from "@ant-design/icons";
-
-import { Layout, Menu, Button, theme } from "antd";
-import { Link } from "react-router-dom";
-
-const { Sider } = Layout;
+  CDBSidebar,
+  CDBSidebarContent,
+  CDBSidebarFooter,
+  CDBSidebarHeader,
+  CDBSidebarMenu,
+  CDBSidebarMenuItem,
+} from "cdbreact";
+import { NavLink } from "react-router-dom";
+import logo from "../admin/image/logoAd.png";
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
-  const items = [
-    {
-      key: "0",
-      icon: < DashboardOutlined/>,
-      label: "Dashboard",
-      to: "/dashboard",
-      style: { textDecoration: "none" }
-    },
-    {
-      key: "1",
-      icon: <ShopOutlined />,
-      label: "Products",
-      to: "/products",
-      style: { textDecoration: "none" }
-    },
-    {
-      key: "2",
-      icon: <UserOutlined />,
-      label: "Users",
-      to: "/users",
-      style: { textDecoration: "none" }
-    },
-    {
-      key: "3",
-      icon: <OrderedListOutlined />,
-      label: "Orders",
-      to: "/orders",
-      style: { textDecoration: "none" }
-    },
-    {
-      key: "4",
-      icon: <TagsOutlined />,
-      label: "Categories",
-      to: "/categories",
-      style: { textDecoration: "none" }
-    },
-  ];
-  
-  
-
   return (
-    <Layout>
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        style={{ height: "100vh", position: "fixed", 
-     }}
-      >
-        <div className="demo-logo-vertical" />
+    <div
+      style={{
+        display: "flex",
+        height: "100%",
+        overflow: "scroll initial",
+        position: "fixed",
+      }}
+    >
+      <CDBSidebar textColor="#fff" backgroundColor="#0f3460">
+        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
+          <img src={logo} alt="logo admin" style={{ width: "100px" }} />
+        </CDBSidebarHeader>
 
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["0"]}
-          selectedKeys={["0"]} // Ajout de cette ligne pour indiquer l'élément actif dans le menu
-        >
-          {items.map((item) => (
-            <Menu.Item 
-            style= {{ textDecoration: "none" }}
-            key={item.key} icon={item.icon}>
-              <Link to={item.to}>{item.label}</Link>
-            </Menu.Item>
-          ))}
-        </Menu>
-      </Sider>
-      <Layout style={{ marginLeft: "200px" }}>
-        <Button
-          type="text"
-          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          onClick={() => setCollapsed(!collapsed)}
-          style={{
-            fontSize: "16px",
-            width: 64,
-            height: 64,
-          }}
-        />
-      </Layout>
-    </Layout>
+        <CDBSidebarContent className="sidebar-content">
+          <CDBSidebarMenu>
+            <NavLink exact to="/dashboard" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">
+                Dashboard
+              </CDBSidebarMenuItem>
+            </NavLink>
+
+            <NavLink exact to="/products" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="shopping-bag">
+                Products
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/users" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="users">Users</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/orders" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="clipboard-list">
+                Orders
+              </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/categories" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="th-list">
+                Categories
+              </CDBSidebarMenuItem>
+              </NavLink>
+          </CDBSidebarMenu>
+        </CDBSidebarContent>
+      </CDBSidebar>
+    </div>
   );
 };
 

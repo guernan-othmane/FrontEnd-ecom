@@ -25,7 +25,10 @@ import NewUser from "./admin/Users/newUser.jsx";
 import EditProduct from "./admin/Products/editProduct.jsx";
 import EditUser from "./admin/Users/editUser.jsx";
 import Orders from "./admin/Orders/orders.jsx";
-import EditOrder from  "./admin/Orders/editOrder.jsx";
+import Categories from "./admin/Categories/categories.jsx";
+import EditOrder from "./admin/Orders/editOrder.jsx";
+import NewCategory  from "./admin/Categories/NewCategory.jsx";
+import VerificationCodePage from "./pages/VerificationCodePage.jsx";
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
@@ -42,16 +45,16 @@ function App() {
 function AppRoutes() {
   const location = useLocation();
   const isDashboardPage = location.pathname === "/dashboard";
-  const isNewProduct = location.pathname ===  "/new-product";
-  const isNewUser = location.pathname ===  "/new-user";
+  const isNewProduct = location.pathname === "/new-product";
+  const isNewUser = location.pathname === "/new-user";
   const isProductsPage = location.pathname === "/products";
   const isOrdersPage = location.pathname === "/orders";
   const isEditOrder = location.pathname === "/edit-order/:id";
-
+  const isCategories = location.pathname === "/categories";
+  const isNewCategory = location.pathname === "/new-category";
   const isUsersPage = location.pathname === "/users";
   const isEditProduct = location.pathname === "/edit-product/:id";
   const isEditUser = location.pathname === "/edit-user/:id";
-
 
   return (
     <Suspense fallback={<Loader />}>
@@ -66,8 +69,28 @@ function AppRoutes() {
         pauseOnHover
         theme="light"
       />
-      {(isDashboardPage || isProductsPage || isNewProduct || isEditProduct || isUsersPage || isNewUser || isEditUser || isOrdersPage || isEditOrder) && <Sidebar />}
-      {!isDashboardPage && !isProductsPage && !isNewProduct && !isEditProduct && !isNewUser && !isUsersPage && !isEditUser && !isOrdersPage && !isEditOrder && <NavBar />}
+      {(isDashboardPage ||
+        isProductsPage ||
+        isNewProduct ||
+        isEditProduct ||
+        isUsersPage ||
+        isNewUser ||
+        isEditUser ||
+        isOrdersPage ||
+        isEditOrder ||
+        isNewCategory ||
+        isCategories) && <Sidebar />}
+      {!isDashboardPage &&
+        !isProductsPage &&
+        !isNewProduct &&
+        !isEditProduct &&
+        !isNewUser &&
+        !isUsersPage &&
+        !isEditUser &&
+        !isOrdersPage &&
+        !isCategories &&
+        !isNewCategory &&
+        !isEditOrder && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
@@ -86,8 +109,22 @@ function AppRoutes() {
         <Route path="/edit-user/:id" element={<EditUser />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/edit-order/:id" element={<EditOrder />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/new-category" element={<NewCategory />} />
+        <Route path="/verify-code" element={<VerificationCodePage />} />
+
       </Routes>
-      {!isDashboardPage && !isProductsPage && !isNewProduct && !isUsersPage && !isEditProduct && !isNewUser&& !isEditUser && !isOrdersPage && !isEditOrder && <Footer />}
+      {!isDashboardPage &&
+        !isProductsPage &&
+        !isNewProduct &&
+        !isUsersPage &&
+        !isEditProduct &&
+        !isNewUser &&
+        !isEditUser &&
+        !isOrdersPage &&
+        !isCategories &&
+        !isNewCategory &&
+        !isEditOrder && <Footer />}
     </Suspense>
   );
 }
